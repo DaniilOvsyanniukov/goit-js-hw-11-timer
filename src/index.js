@@ -7,6 +7,10 @@ const refs = {
     secs: document.querySelector('span[data-value="secs"]'),
 };
 
+function pad(value) {
+    return String(value).padStart(2, '0');
+}
+
 class CountdownTimer{
     constructor({ selector, targetDate }) {
         this.targetDate = targetDate;
@@ -16,10 +20,10 @@ class CountdownTimer{
     timer() {
         setInterval(() => {
             const time = Date.now();
-            const days = Math.floor((this.targetDate.getTime()-time) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor(((this.targetDate.getTime()-time) % (1000 * 60)) / 1000);
+            const days = pad(Math.floor((this.targetDate.getTime()-time) / (1000 * 60 * 60 * 24)));
+            const hours = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            const mins = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60)) / (1000 * 60)));
+            const secs = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60)) / 1000));
 
             refs.days.textContent = `${days}`;
             refs.hours.textContent = `${hours}`;
