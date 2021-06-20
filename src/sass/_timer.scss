@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $color-title;
+  color: $color-primary-text;
+  font-family: 'Roboto', sans-serif;
+  @include font();
+}
+.timer {
+  display: grid;
+  grid-template-columns: 2fr 0.1fr 2fr 0.1fr 2fr 0.1fr 2fr;
+  grid-auto-rows: minmax(40px, auto);
+  grid-gap: 0.5em;
+
+  margin-top: 50px;
+
+  .field {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .value {
+    background-color: $color-primary-background;
+    border: 2px solid $color-accent;
+    border-radius: 10px;
+    min-width: 60px;
+    text-align: center;
+    @include font($fs: 40px);
+  }
+  .colon {
+    justify-self: center;
+    @include font($fs: 40px);
+  }
+}
