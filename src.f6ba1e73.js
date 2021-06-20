@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");const t={days:document.querySelector('span[data-value="days"]'),hours:document.querySelector('span[data-value="hours"]'),mins:document.querySelector('span[data-value="mins"]'),secs:document.querySelector('span[data-value="secs"]')};class e{constructor({selector:t,targetDate:e}){this.targetDate=e,this.selector=t}timer(){setInterval(()=>{const e=Date.now(),a=Math.floor((this.targetDate.getTime()-e)/864e5),s=Math.floor((this.targetDate.getTime()-e)%864e5/36e5),r=Math.floor((this.targetDate.getTime()-e)%36e5/6e4),o=Math.floor((this.targetDate.getTime()-e)%6e4/1e3);t.days.textContent=`${a}`,t.hours.textContent=`${s}`,t.mins.textContent=`${r}`,t.secs.textContent=`${o}`},1e3)}}const a=new e({selector:"#timer-1",targetDate:new Date("Jul 17, 2021")});a.timer();
 },{"./sass/main.scss":"clu1"}]},{},["Focm"], null)
-//# sourceMappingURL=/parcel-project-template/src.f6ba1e73.js.map
+//# sourceMappingURL=/goit-js-hw-11-timer/src.f6ba1e73.js.map
