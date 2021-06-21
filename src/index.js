@@ -7,9 +7,7 @@ const refs = {
     secs: document.querySelector('span[data-value="secs"]'),
 };
 
-function pad(value) {
-    return String(value).padStart(2, '0');
-}
+
 
 class CountdownTimer{
     constructor({ selector, targetDate }) {
@@ -17,20 +15,30 @@ class CountdownTimer{
         this.selector = selector;
     };
 
+    pad(value) {
+    return String(value).padStart(2, '0');
+}
+
     timer() {
         setInterval(() => {
-            const time = Date.now();
-            const days = pad(Math.floor((this.targetDate.getTime()-time) / (1000 * 60 * 60 * 24)));
-            const hours = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            const mins = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60)) / (1000 * 60)));
-            const secs = pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60)) / 1000));
+            const time = this.timeCalc(Date.now());
 
-            refs.days.textContent = `${days}`;
-            refs.hours.textContent = `${hours}`;
-            refs.mins.textContent = `${mins}`;
-            refs.secs.textContent = `${secs}`;
+            refs.days.textContent = `${time.days}`;
+            refs.hours.textContent = `${time.hours}`;
+            refs.mins.textContent = `${time.mins}`;
+            refs.secs.textContent = `${time.secs}`;
 
         }, 1000);
+    }
+
+    timeCalc(time) {
+        const days = this.pad(Math.floor((this.targetDate.getTime()-time) / (1000 * 60 * 60 * 24)));
+        const hours = this.pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        const mins = this.pad(Math.floor(((this.targetDate.getTime()-time) % (1000 * 60 * 60)) / (1000 * 60)));
+        const secs = this.pad(Math.floor(((this.targetDate.getTime() - time) % (1000 * 60)) / 1000));
+        
+        return { days, hours, mins, secs };
+        
     }
 
 };
